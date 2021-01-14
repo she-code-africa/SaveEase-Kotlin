@@ -1,10 +1,9 @@
 package com.scamobileinitiative.saveease
 
-import android.graphics.Bitmap
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.*
+import android.widget.MediaController
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.status_list_item.view.*
@@ -14,7 +13,6 @@ import java.io.File
 private const val POST_TYPE_VIDEO: Int = 0;
 private const val POST_TYPE_Image: Int = 1;
 
-/// [Create Recycler adapter class for handling our application recycler view]
 class RecyclerAdapter(
     private var story: List<Story>
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -40,40 +38,6 @@ class RecyclerAdapter(
     }
 
 
-    //        val itemTitle: TextView = itemView.findViewById(R.id.itemTitle);
-//        val itemDetails: TextView = itemView.findViewById(R.id.itemDetails);
-//        val statusImage: ImageView = itemView.findViewById(R.id.status_image);
-//        val statusVideo: VideoView = itemView.findViewById(R.id.status_video);
-//        val downloadIcon: ImageView = itemView.findViewById(R.id.status_download_icon)
-//
-//        init {
-//            itemView.setOnClickListener {
-//                val position: Int = adapterPosition
-//                Toast.makeText(
-//                    itemView.context,
-//                    "You clicked on Item # ${position + 1}",
-//                    Toast.LENGTH_SHORT
-//                ).show()
-//            }
-//            downloadIcon.setOnClickListener { v: View ->
-//                val position: Int = adapterPosition
-//                val imageFile = File(story[position].filePath)
-//                if (!File("/storage/ /0/Save Ease", imageFile.name).exists()) {
-//                    imageFile.copyTo(File("/storage/emulated/0/Save Ease", imageFile.name))
-//                    Toast.makeText(
-//                        itemView.context,
-//                        "Status saved successfully",
-//                        Toast.LENGTH_SHORT
-//                    ).show()
-//                } else {
-//                    Toast.makeText(itemView.context, "Status saved already", Toast.LENGTH_SHORT)
-//                        .show()
-//                }
-//
-//            }
-//        }
-
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         if (viewType == POST_TYPE_Image) {
             val v =
@@ -97,11 +61,9 @@ class RecyclerAdapter(
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-//        holder.itemTitle.text = story[position].filePath
-//        holder.itemDetails.text = title[position]
-        if(getItemViewType(position) == POST_TYPE_Image){
+        if (getItemViewType(position) == POST_TYPE_Image) {
             (holder as ImageViewHolder).bind(story[position])
-        }else{
+        } else {
             (holder as VideoViewHolder).bind(story[position])
         }
 
